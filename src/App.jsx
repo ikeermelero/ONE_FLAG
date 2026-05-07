@@ -23,20 +23,17 @@ function App() {
 
   const handleAnswer = (cn) => {
     setIsCorrect(round.correct.code)
-    if (cn === round.correct.code) {
-
-      console.log("Acertaste");
-    } else {
+    if (cn !== round.correct.code) {    
       setIsIncorrect(cn);
       console.log("No te desanimes");
     }
+    console.log("Acertaste");
     setTimeout(() => {
       setIsIncorrect(null)
       setIsCorrect(null)
       setRound(getRandomRound(country));
     }, 1597);
   };
-
 
   return (
     <>
