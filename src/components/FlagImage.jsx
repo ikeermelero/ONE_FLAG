@@ -3,7 +3,7 @@
 export function FlagImage({ countryCode }) {
   return (
     <img 
-      src={`https://flagcdn.com/160x120/${countryCode}.png`} 
+      src={`https://flagcdn.com/80x60/${countryCode}.png`} 
       alt="flag"
     />
   );

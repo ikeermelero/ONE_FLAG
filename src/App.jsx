@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import { FlagCard } from "./components/FlagImage.jsx";
+import { FlagImage } from "./components/FlagImage.jsx";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
@@ -71,10 +71,11 @@ function App() {
   };
 
   return (
+
+    
     <>
       <h1>Hello Word!!</h1>
-
-          <img src={`https://flagcdn.com/160x120/${round.correct[0]}.png`} alt="Fotografía de bandera" />
+          <FlagImage countryCode={round.correct[0]}/>
           <ul>
       {shuffle(round.options).map((c) => (
         <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" key={c[0]} onClick={() => handleAnswer(c[0])}> {c[1]} </button>
