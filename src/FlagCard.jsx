@@ -1,3 +1,5 @@
+// countryCode : round.correct[0]
+
 export function FlagCard({ countryCode }) {
   return (
     <img 
