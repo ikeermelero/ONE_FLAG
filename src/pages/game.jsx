@@ -18,8 +18,10 @@ const Game = ({ onQuit }) => {
     const [round, setRound] = useState(() => getRandomRound());
     const [isIncorrect, setIsIncorrect] = useState(null);
     const [isCorrect, setIsCorrect] = useState(null);
+    const [locked, setLocked] = useState(false);
 
     const handleAnswer = (cn) => {
+        setLocked(true);
         setIsCorrect(round.correct.code)
         if (cn !== round.correct.code) {
             setIsIncorrect(cn);
@@ -31,6 +33,7 @@ const Game = ({ onQuit }) => {
             setIsIncorrect(null)
             setIsCorrect(null)
             setRound(getRandomRound());
+            setLocked(false)
         }, 1597);
     };
 
@@ -46,7 +49,7 @@ const Game = ({ onQuit }) => {
             <ul>
                 {round.options.map((c) => (
                     <li key={c.code}>
-                        <button className={`bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ${(isIncorrect === c.code) ? 'incorrect' : (isCorrect === c.code) ? 'correct' : ''}`} onClick={() => handleAnswer(c.code)}>
+                        <button disabled={locked} className={`bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ${(isIncorrect === c.code) ? 'incorrect' : (isCorrect === c.code) ? 'correct' : ''}`} onClick={() => handleAnswer(c.code)}>
                             {c.name}
                         </button>
                     </li>
