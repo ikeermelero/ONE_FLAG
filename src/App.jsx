@@ -7,6 +7,8 @@ function App() {
   const [page, setPage] = useState("index");
 
   return (
+
+    
     <>
       <h1>One Flag</h1>
 
