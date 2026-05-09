@@ -10,8 +10,6 @@ function App() {
 
     
     <>
-      <h1>One Flag</h1>
-
       {page === "game" ? (
         <Game onQuit={() => setPage("index")} />
       ) : (
