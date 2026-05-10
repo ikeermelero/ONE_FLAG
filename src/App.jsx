@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Game from "./pages/game";
 import Index from "./pages/index";
-import ScoreManager from "./components/ScoreManager";
+import ScoreManager from "./utils/ScoreManager";
 
 function App() {
   const [page, setPage] = useState("index");
