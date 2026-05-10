@@ -1,4 +1,5 @@
 import ScoreManager from "../utils/ScoreManager";
+import QuitButton from "./QuitButton";
 
 const Results = ({ scores, players, onQuit }) => {
     const p1 = scores[1];
@@ -31,12 +32,7 @@ const Results = ({ scores, players, onQuit }) => {
                 )}
             </div>
 
-            <button
-                onClick={onQuit}
-                className="text-xs font-semibold tracking-widest uppercase text-white/30 hover:text-red-400 transition-colors duration-200"
-            >
-                Volver al inicio
-            </button>
+            <QuitButton onClick={onQuit}>Volver al inicio</QuitButton>
 
             <ScoreManager scores={scores} players={players} onFinish={onQuit} />
         </div>

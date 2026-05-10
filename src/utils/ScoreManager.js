@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { getFromLocalStorage, saveToLocalStorage } from "./localStorage";
 
-const ScoreManager = ({ scores, players, onFinish }) => {
+const ScoreManager = ({ scores, players }) => {
   useEffect(() => {
     if (players !== 2) {
-      onFinish();
       return;
     }
 
@@ -17,9 +16,7 @@ const ScoreManager = ({ scores, players, onFinish }) => {
 
     history.push(newEntry);
     saveToLocalStorage("game_history", history);
-
-    onFinish();
-  }, [scores, players, onFinish]);
+  }, [scores, players]);
 
   return null;
 };

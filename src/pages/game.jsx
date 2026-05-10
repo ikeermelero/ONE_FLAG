@@ -3,6 +3,7 @@ import country from "../utils/api";
 import Results from "../components/Results";
 import GameHUD from "../components/GameHUD";
 import FlagImage from "../components/FlagImage";
+import QuitButton from "../components/QuitButton";
 
 const shuffle = (x) => [...x].sort(() => Math.random() - 0.5);
 
@@ -22,7 +23,7 @@ const Game = ({ onQuit, players }) => {
   const [locked, setLocked] = useState(false);
   const [scores, setScores] = useState({ 1: 0, 2: 0 });
   const [currentPlayer, setCurrentPlayer] = useState(1);
-  const [roundsLeft, setRoundsLeft] = useState(players === 2 ? 20 : 10);
+  const [roundsLeft, setRoundsLeft] = useState(players === 2 ? 4 : 2);
   const isGameOver = roundsLeft === 0;
 
   if (isGameOver) {
@@ -82,13 +83,7 @@ const Game = ({ onQuit, players }) => {
         ))}
       </ul>
 
-      <button
-        onClick={onQuit}
-        style={font}
-        className="text-xs font-semibold tracking-widest uppercase text-white/30 hover:text-red-400 transition-colors duration-200"
-      >
-        Abandonar
-      </button>
+      <QuitButton onClick={onQuit}>Abandonar partida</QuitButton>
     </div>
   );
 };
