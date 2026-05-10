@@ -10,7 +10,6 @@ function App() {
 
   const handleStart = (selectedPlayers) => {
     setPlayers(selectedPlayers);
-    console.log(selectedPlayers)
     setGameId((prev) => prev + 1);
     setPage("game");
   };

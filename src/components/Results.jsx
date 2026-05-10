@@ -1,3 +1,5 @@
+import ScoreManager from "../utils/ScoreManager";
+
 const Results = ({ scores, players, onQuit }) => {
     const p1 = scores[1];
     const p2 = scores[2];
@@ -33,8 +35,10 @@ const Results = ({ scores, players, onQuit }) => {
                 onClick={onQuit}
                 className="text-xs font-semibold tracking-widest uppercase text-white/30 hover:text-red-400 transition-colors duration-200"
             >
-            Volver al inicio
+                Volver al inicio
             </button>
+
+            <ScoreManager scores={scores} players={players} onFinish={onQuit} />
         </div>
     );
 };

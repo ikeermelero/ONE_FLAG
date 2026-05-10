@@ -4,7 +4,7 @@ const font = { fontFamily: "'Montserrat', sans-serif" };
 
 export default function PlayerSelect({ onStart }) {
   const [players, setPlayers] = useState(1);
-  console.log(players);
+
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
       <div className="w-full max-w-sm">

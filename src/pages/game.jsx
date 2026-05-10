@@ -2,6 +2,7 @@ import { useState } from "react";
 import country from "../utils/api";
 import Results from "../components/Results";
 import GameHUD from "../components/GameHUD";
+import FlagImage from "../components/FlagImage";
 
 const shuffle = (x) => [...x].sort(() => Math.random() - 0.5);
 
@@ -23,7 +24,6 @@ const Game = ({ onQuit, players }) => {
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [roundsLeft, setRoundsLeft] = useState(players === 2 ? 20 : 10);
   const isGameOver = roundsLeft === 0;
-  console.log(isGameOver)
 
   if (isGameOver) {
     return <Results scores={scores} players={players} onQuit={onQuit} />;
@@ -31,7 +31,6 @@ const Game = ({ onQuit, players }) => {
 
   const handleAnswer = (cn) => {
     setRoundsLeft(() => roundsLeft - 1);
-    console.log(roundsLeft);
     setLocked(true);
     setIsCorrect(round.correct.code);
 
@@ -45,16 +44,14 @@ const Game = ({ onQuit, players }) => {
         [currentPlayer]: prev[currentPlayer] + 1,
       }));
     }
+
     setTimeout(() => {
       setCurrentPlayer((prev) => (players === 2 ? (prev === 1 ? 2 : 1) : 1));
       setIsIncorrect(null);
       setIsCorrect(null);
       setRound(getRandomRound());
       setLocked(false);
-
     }, 1597);
-
-
   };
 
   const font = { fontFamily: "'Montserrat', sans-serif" };
@@ -63,11 +60,7 @@ const Game = ({ onQuit, players }) => {
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center gap-8 p-6">
       <GameHUD currentPlayer={currentPlayer} scores={scores} players={players} />
 
-      <img
-        className="rounded-xl shadow-[0_0_30px_rgba(59,130,246,0.2)] border border-white/10"
-        src={`https://flagcdn.com/160x120/${round.correct.code}.png`}
-        alt="Bandera"
-      />
+      <FlagImage countryCode={round.correct.code} />
 
       <ul className="flex flex-col gap-3 w-full max-w-sm">
         {round.options.map((c) => (
