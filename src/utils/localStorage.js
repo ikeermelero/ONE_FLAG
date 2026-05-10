@@ -9,6 +9,4 @@ function saveToLocalStorage(key, value) {
     localStorage.setItem(key, valueString);
 }
 
-export default {
-    //asdf
-}
+export { getFromLocalStorage, saveToLocalStorage };
