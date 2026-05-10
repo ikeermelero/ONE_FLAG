@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import Game from "./pages/game";
 import Index from "./pages/index";
 

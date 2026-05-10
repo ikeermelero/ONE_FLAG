@@ -23,23 +23,26 @@ const Game = ({ onQuit, players }) => {
   const [locked, setLocked] = useState(false);
   const [scores, setScores] = useState({ 1: 0, 2: 0 });
   const [currentPlayer, setCurrentPlayer] = useState(1);
-  const [roundsLeft, setRoundsLeft] = useState(players === 2 ? 4 : 2);
+  const [roundsLeft, setRoundsLeft] = useState(players === 2 ? 20 : 10);
   const isGameOver = roundsLeft === 0;
+  const [showResults, setShowResults] = useState(false);
 
-  if (isGameOver) {
+  if (showResults) {
     return <Results scores={scores} players={players} onQuit={onQuit} />;
   }
 
   const handleAnswer = (cn) => {
-    setRoundsLeft(() => roundsLeft - 1);
+    if (locked) return;
+
+    const nextRoundsLeft = roundsLeft - 1;
+
+    setRoundsLeft(nextRoundsLeft);
     setLocked(true);
     setIsCorrect(round.correct.code);
 
     if (cn !== round.correct.code) {
       setIsIncorrect(cn);
-      console.log("No te desanimes.");
     } else {
-      console.log("Acertaste, sigue así.");
       setScores((prev) => ({
         ...prev,
         [currentPlayer]: prev[currentPlayer] + 1,
@@ -50,8 +53,13 @@ const Game = ({ onQuit, players }) => {
       setCurrentPlayer((prev) => (players === 2 ? (prev === 1 ? 2 : 1) : 1));
       setIsIncorrect(null);
       setIsCorrect(null);
-      setRound(getRandomRound());
       setLocked(false);
+
+      if (nextRoundsLeft === 0) {
+        setShowResults(true);
+      } else {
+        setRound(getRandomRound());
+      }
     }, 1597);
   };
 
