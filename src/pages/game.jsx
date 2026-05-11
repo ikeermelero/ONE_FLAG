@@ -9,7 +9,7 @@ import AnswerList from "../components/AnswerList";
 const shuffle = (x) => [...x].sort(() => Math.random() - 0.5);
 
 const getRandomRound = () => {
-  let options = [...country].sort(() => Math.random() - 0.5).slice(0, 4);
+  let options = shuffle(country).slice(0, 4);
 
   const correct = options[0];
   const incorrect = options.slice(1, 4);
