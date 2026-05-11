@@ -1,28 +1,25 @@
 import { useState } from "react";
-import "./App.css";
 import Game from "./pages/game";
 import Index from "./pages/index";
 import ScoreManager from "./utils/ScoreManager";
 
 function App() {
   const [page, setPage] = useState("index");
-  const [finalScores, setFinalScores] = useState(null);
+  const [players, setPlayers] = useState(1);
+  const [gameId, setGameId] = useState(0);
 
-  const handleGameOver = (scores) => {
-    setFinalScores(scores);
-    setPage("save");
+  const handleStart = (selectedPlayers) => {
+    setPlayers(selectedPlayers);
+    setGameId((prev) => prev + 1);
+    setPage("game");
   };
 
   return (
-
-    
     <>
       {page === "game" ? (
-        <Game onQuit={() => setPage("index")} onFinish={handleGameOver} />
-      ) : page === "save" ? (
-        <ScoreManager scores={finalScores} onFinish={() => setPage("index")} />
+        <Game key={gameId} players={players} onQuit={() => setPage("index")} />
       ) : (
-        <Index onStart={() => setPage("game")} />
+        <Index onStart={handleStart}/>
       )}
     </>
   );
